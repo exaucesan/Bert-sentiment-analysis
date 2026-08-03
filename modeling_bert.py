@@ -114,12 +114,12 @@ def eval_epoch(model, dataloader, criterion, device):
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
  
-    file_name = "./Train.csv"
+    file_name = "./Train_sample.csv"
     model_name = "google-bert/bert-base-cased"
-    batch_size = 32
-    num_epochs = 3
+    batch_size = 4
+    num_epochs = 1
     lr = 2e-5
-    val_split = 0.1
+    val_split = 0.15
     num_classes = 5
     
     config = {
@@ -136,7 +136,7 @@ def main():
     )
     
  
-    dataset = CustomDataset(file_name=file_name, tokenizer_name=model_name)
+    dataset = CustomDataset(file_name=file_name, tokenizer_name=model_name, max_length=64)
  
     val_size = int(len(dataset) * val_split)
     train_size = len(dataset) - val_size
