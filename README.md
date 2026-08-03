@@ -33,6 +33,22 @@ La val accuracy (97.5%) est calculée sur 240 exemples de validation. Elle est h
 - Le temps d'entraînement de BERT sur CPU est un vrai frein : impossible d'entraîner sur les 36 000 exemples originaux dans le temps imparti, d'où le choix d'un sous-échantillon réduit et équilibré pour ce rendu. Une piste d'amélioration serait d'utiliser un GPU (Colab par exemple) pour entraîner sur le dataset complet avec plusieurs epochs.
 - Premier lancement plus lent que prévu au tout début de l'epoch (le temps que PyTorch charge le modèle en mémoire), ce qui a pu donner une impression trompeuse de blocage alors que le calcul avançait normalement.
 
+## Démo
+
+Une interface Gradio (`demo.py`) permet de tester le modèle sur une phrase saisie librement :
+
+```bash
+python demo.py
+```
+
+Exemple testé :
+
+| Texte saisi | Prédiction | Confiance |
+|---|---|---|
+| "je vais te baiser jusqu'à t'etrangler" | `Physical_violence` | 68% |
+
+Le modèle a aussi attribué 11% à `emotional_violence` et 10% à `sexual_violence`, ce qui montre qu'il ne fait pas une prédiction "tout ou rien" mais capture bien qu'un texte peut mêler plusieurs formes de violence.
+
 ## Lancer le projet
 
 ```bash
